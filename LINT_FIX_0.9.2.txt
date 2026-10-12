@@ -1,0 +1,32 @@
+SCROBBLE CITY v0.9.2 — 5 ESLint errors fixed
+=================================================
+
+This is a small lint-only update based on v0.9.2-beta.1.
+
+OPTION A — Patch an existing v0.9.2 project (recommended):
+1. Keep your v0.9.2 project and make a backup copy of its src folder.
+2. Copy the 5 files from this ZIP to matching paths in your project.
+3. Accept overwrite when prompted. The new periodLabels.ts goes in src/lib.
+4. In VS Code terminal, inside the folder containing package.json, run:
+   npm run lint
+   npm run test
+   npm run build
+5. If all three pass, run npm run dev.
+
+Do not copy an .env file into a public repository. Your existing local .env
+may remain in your project directory; this patch does not change it.
+
+WHAT WAS CHANGED:
+- MusicTimeMachine.tsx: moved exported periodLabels into src/lib/periodLabels.ts,
+  avoiding the React Fast Refresh only-export-components ESLint rule.
+- App.tsx: import periodLabels from the shared lib module.
+- historicalStats.ts: initialize pagesFetched to 1 (first page already loaded
+  before the variable is used) and remove the overwritten assignment.
+- lastfm.ts: replace control-character regexes with a character-code check;
+  preserve the original error as the cause of a timeout message.
+
+Existing saves, achievements, records, and Last.fm integration are untouched.
+
+Validation note: 11/11 Node tests passed in the preparation environment.
+The full dependency-based ESLint/Vite build could not be completed there,
+so please confirm it with npm run lint and npm run build on your Windows PC.

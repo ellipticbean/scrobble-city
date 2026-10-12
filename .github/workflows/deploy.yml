@@ -1,0 +1,51 @@
+name: Deploy Scrobble City to GitHub Pages (manual approval only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    # Enable only when your Last.fm permission and listed conditions are confirmed.
+    if: ${{ vars.LASTFM_PUBLIC_APPROVED == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run test
+      - run: npm run lint
+      - name: Verify Last.fm API key is configured
+        env:
+          PUBLIC_API_KEY: ${{ secrets.VITE_LASTFM_API_KEY }}
+        run: |
+          if [ -z "$PUBLIC_API_KEY" ]; then
+            echo '::error::Missing VITE_LASTFM_API_KEY GitHub Actions secret.'
+            exit 1
+          fi
+      - run: npm run build
+        env:
+          GITHUB_PAGES: 'true'
+          LASTFM_PUBLIC_APPROVED: ${{ vars.LASTFM_PUBLIC_APPROVED }}
+          VITE_LASTFM_API_KEY: ${{ secrets.VITE_LASTFM_API_KEY }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    if: ${{ vars.LASTFM_PUBLIC_APPROVED == 'true' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
