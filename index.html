@@ -1,17 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#c8e8f6" />
-    <!-- Local builds are noindex; approved release builds switch to index via vite.config.ts. -->
-    <meta name="robots" content="noindex, nofollow" />
-    <meta name="description" content="Build a cozy pixel-art musical city from your public Last.fm listening history. Explore neighborhoods, discover stories, and collect imaginary vinyl records." />
-    <title>Scrobble City — A little world made of music</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#c8e8f6" />
+  <!-- Local builds are noindex; approved release builds switch to index via vite.config.ts. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description"
+    content="Build a cozy pixel-art musical city from your public Last.fm listening history. Explore neighborhoods, discover stories, and collect imaginary vinyl records." />
+  <!-- Discord, Facebook, and other social previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Scrobble City" />
+  <meta property="og:title" content="Scrobble City — A Little World Made of Music" />
+  <meta property="og:description"
+    content="Every artist is a building. Every scrobble tells a story. Build your own cozy pixel-art musical city using your Last.fm listening history!" />
+  <meta property="og:url" content="https://ellipticbean.github.io/scrobble-city/" />
+
+  <meta property="og:image" content="https://ellipticbean.github.io/scrobble-city/discord-preview.png" />
+  <meta property="og:image:secure_url" content="https://ellipticbean.github.io/scrobble-city/discord-preview.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt"
+    content="Scrobble City, a cozy pixel-art world inspired by your Last.fm music history" />
+
+  <!-- X / Twitter preview -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scrobble City — A Little World Made of Music" />
+  <meta name="twitter:description" content="Turn your Last.fm listening history into a cozy pixel-art city!" />
+  <meta name="twitter:image" content="https://ellipticbean.github.io/scrobble-city/discord-preview.png" />
+  <title>Scrobble City — A little world made of music</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
