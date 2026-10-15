@@ -12,7 +12,7 @@ export default function UsernameForm({
   onDemo,
   loading,
 }: UsernameFormProps) {
-  const [username, setUsername] = useState(() => new URLSearchParams(window.location.search).get('user')?.slice(0, 100) || 'MintyCorpse');
+  const [username, setUsername] = useState(() => new URLSearchParams(window.location.search).get('user')?.slice(0, 100) || '');
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

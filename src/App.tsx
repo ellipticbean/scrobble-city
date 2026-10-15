@@ -95,7 +95,7 @@ export default function App() {
     const availableDistrictIds = currentDistrictIds.length
       ? currentDistrictIds : districts.map((item) => item.id);
     if (availableDistrictIds.length > 0 &&
-        availableDistrictIds.every((id) => nextStamps.some((stamp) => stamp.districtId === id))) {
+      availableDistrictIds.every((id) => nextStamps.some((stamp) => stamp.districtId === id))) {
       recordForOwner(username, source, 'master-explorer');
     }
   }
@@ -521,6 +521,15 @@ export default function App() {
         <button type="button" className="privacy-small-link" onClick={() => setPrivacyOpen(true)}>
           🔎 How Scrobble City uses Last.fm data
         </button>
+
+        <a
+          className="privacy-small-link"
+          href="https://ellipticbean.github.io/scrobble-world/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🌍 Explore Scrobble World ↗
+        </a>
 
         {error && (
           <div className="error-message" role="alert">
